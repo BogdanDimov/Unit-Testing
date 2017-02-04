@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Tasker.Core;
 using Tasker.Models.Contracts;
 
 namespace Tasker.Tests.Core.TaskManagerTests.Fakes
 {
-    public class TaskManagerFake : TaskManager
+    internal class TaskManagerFake : TaskManager
     {
         public TaskManagerFake(IIdProvider provider, ILogger logger) : base(provider, logger)
         {

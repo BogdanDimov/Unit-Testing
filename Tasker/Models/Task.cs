@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tasker.Models.Contracts;
 
 namespace Tasker.Models
@@ -26,7 +22,7 @@ namespace Tasker.Models
 
             set
             {
-                if(value < 0)
+                if (value < 0)
                 {
                     throw new ArgumentException();
                 }
@@ -44,7 +40,7 @@ namespace Tasker.Models
 
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException();
                 }

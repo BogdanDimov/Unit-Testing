@@ -6,7 +6,6 @@ namespace Tasker.Tests.Models.TaskTests
     [TestFixture]
     public class ConstructorTests
     {
-
         public void Ctor_ShouldAssignDescription_WhenInvoked(string value)
         {
             // arrange && act

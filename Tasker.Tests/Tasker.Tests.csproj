@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Provider\ConsoleLoggerTests\LogTests.cs" />
+    <Compile Include="Core\Provider\Fake\IdProviderFake.cs" />
     <Compile Include="Core\Provider\IdProviderTests\NextIdTests.cs" />
     <Compile Include="Core\TaskManagerTests\AddTests.cs" />
     <Compile Include="Core\TaskManagerTests\Fakes\TaskManagerFake.cs" />

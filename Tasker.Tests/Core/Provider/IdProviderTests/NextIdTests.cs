@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using Tasker.Core.Providers;
 
 namespace Tasker.Tests.Core.Provider.IdProviderTests

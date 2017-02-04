@@ -11,7 +11,6 @@ namespace Tasker.Core
     {
         private readonly IIdProvider idProvider;
         private readonly ILogger logger;
-        private ICollection<ITask> tasks;
 
         public TaskManager(IIdProvider provider, ILogger logger)
         {
@@ -27,10 +26,11 @@ namespace Tasker.Core
 
             this.idProvider = provider;
             this.logger = logger;
-            this.tasks = new List<ITask>();
+            this.Tasks = new List<ITask>();
         }
 
         protected ICollection<ITask> Tasks { get; private set; }
+
         public void Add(ITask task)
         {
             if (task == null)
@@ -38,8 +38,9 @@ namespace Tasker.Core
                 throw new ArgumentNullException();
             }
 
-            this.tasks.Add(task);
-            this.logger.Log("Task logged successfully");
+            task.Id = this.idProvider.NextId();
+            this.Tasks.Add(task);
+            this.logger.Log("Task added successfully!");
         }
     }
 }

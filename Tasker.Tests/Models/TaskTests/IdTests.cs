@@ -1,9 +1,6 @@
 ﻿using NUnit.Framework;
 using Tasker.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Tasker.Tests.Models.TaskTests
 {
@@ -12,7 +9,7 @@ namespace Tasker.Tests.Models.TaskTests
     {
         [TestCase(-1)]
         [TestCase(-10)]
-        public void Id_ShouldThrowArgumentException_WhenPassedValueInInvalidRange(int value)
+        public void Id_ShouldThrowArgumentException_WhenPassedValueIsNegative(int value)
         {
             // Arrange
             var sut = new Task("Valid description");
@@ -21,18 +18,18 @@ namespace Tasker.Tests.Models.TaskTests
             Assert.Throws<ArgumentException> (() => sut.Id = value);
         }
 
-        //[TestCase(-1)]
-        //[TestCase(-10)]
-        //public void Id_ShouldNotThrow_WhenPassedTests(int value)
-        //{
-        //    // Arrange
-        //    var sut = new Task("Valid description");
+        [TestCase(1)]
+        [TestCase(10)]
+        public void Id_ShouldNotThrow_WhenPassedPositiveValue(int value)
+        {
+            // Arrange
+            var sut = new Task("Valid description");
 
-        //    // Act && Assert
-        //    Assert.Throws<ArgumentException>(() => sut.Id = value);
-        //}
+            // Act & Assert
+            Assert.DoesNotThrow(() => sut.Id = value);
+        }
 
-        [TestCase(0)]
+        [TestCase(1)]
         [TestCase(10)]
         public void Id_ShouldSetPassedValue_WhenPassedValueIsValid(int value)
         {

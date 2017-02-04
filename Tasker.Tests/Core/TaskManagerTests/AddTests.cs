@@ -14,31 +14,10 @@ namespace Tasker.Tests.Core.TaskManagerTests
         public void Add_ShouldThrowArgumentNullException_WhenPassedNullValue()
         {
             var idProviderStub = new Mock<IIdProvider>();
-            var taskStub = new Mock<ITask>();
             var consoleLoggerStub = new Mock<ILogger>();
-
             var sut = new TaskManager(idProviderStub.Object, consoleLoggerStub.Object);
 
-            Assert.Throws<ArgumentNullException>(() => sut.Add(taskStub.Object));
-        }
-
-        [Test]
-        public void Add_ShouldAssignIdToProvidedTask_WhenInvalidTaskIsPassed()
-        {
-            // arrange
-            var expectedValue = 5;
-            var idProviderStub = new Mock<IIdProvider>();
-            var consoleLoggerStub = new Mock<ILogger>();
-            var taskMock = new Mock<ITask>();
-
-            var sut = new TaskManager(idProviderStub.Object, consoleLoggerStub.Object);
-
-            idProviderStub.Setup(x => x.NextId()).Returns(expectedValue);
-            // act
-            sut.Add(taskMock.Object);
-
-            //assert
-            taskMock.VerifySet(x => x.Id = 5);
+            Assert.Throws<ArgumentNullException>(() => sut.Add(null));
         }
 
         [TestCase(0)]
@@ -67,12 +46,11 @@ namespace Tasker.Tests.Core.TaskManagerTests
             var taskStub = new Mock<ITask>();
             var idProviderStub = new Mock<IIdProvider>();
             var consoleLoggerMock = new Mock<ILogger>();
-
             var sut = new TaskManager(idProviderStub.Object, consoleLoggerMock.Object);
 
             sut.Add(taskStub.Object);
 
-            consoleLoggerMock.Verify(x => x.Log("Pesho"), Times.Once);
+            consoleLoggerMock.Verify(x => x.Log(It.IsAny<string>()), Times.Once);
         }
 
         [Test]
@@ -82,7 +60,6 @@ namespace Tasker.Tests.Core.TaskManagerTests
             var taskStub = new Mock<ITask>();
             var idProviderStub = new Mock<IIdProvider>();
             var consoleLoggerStub = new Mock<ILogger>();
-
             var sut = new TaskManagerFake(idProviderStub.Object, consoleLoggerStub.Object);
 
             sut.Add(taskStub.Object);
